@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Library</title>
+</head>
+
+<body>
+
+<h1>My Movie Library 🎬</h1>
+
+<h2>Add a Movie</h2>
+
+<form action="/add" method="POST">
+    <input type="text" name="title" placeholder="Enter movie title" required>
+    <button type="submit">Add Movie</button>
+</form>
+
+<hr>
+
+{% if movies %}
+
+<ul>
+{% for movie in movies %}
+
+<li>
+
+<h3>{{ movie.title }} ({{ movie.year }})</h3>
+
+<p>Rating: {{ movie.rating }}</p>
+
+{% if movie.poster %}
+<img src="{{ movie.poster }}" width="150">
+{% endif %}
+
+<br><br>
+
+<a href="/delete/{{ movie.id }}">
+<button>Delete</button>
+</a>
+
+</li>
+
+{% endfor %}
+</ul>
+
+{% else %}
+
+<p>No movies yet.</p>
+
+{% endif %}
+
+</body>
+</html>
